@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// 文章模型
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String?
+  content     String   // MDX 内容
+  category    Category
+  tags        Tag[]
+  published   Boolean  @default(false)
+  views       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([category])
+  @@index([published])
+  @@index([createdAt])
+}
+
+// 分类枚举
+enum Category {
+  VIBE_CODING     // Vibe Coding
+  SOFTWARE_TESTING // 软件测试
+  DATA_ENGINEERING // 数据工程
+  GENERAL         // 通用
+}
+
+// 标签模型
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  slug  String @unique
+  posts Post[]
+}
+
+// 订阅者模型
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+// 页面浏览统计
+model PageView {
+  id        String   @id @default(cuid())
+  slug      String
+  count     Int      @default(1)
+  updatedAt DateTime @updatedAt
+  
+  @@unique([slug])
+}
