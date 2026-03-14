@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Code2, TestTube, Database, Sparkles, Users, BookOpen } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { NewsletterSubscribe } from "@/components/shared/newsletter-subscribe";
+import { ContactForm } from "@/components/shared/contact-form";
 import { useTranslation } from "@/lib/use-translation";
 
 export default function Home() {
@@ -264,6 +265,23 @@ export default function Home() {
                 {t('home.community.subscribeAction')}
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="border-t">
+        <div className="container max-w-6xl py-16 md:py-24">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">
+              {t('contact.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              {t('contact.description')}
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <ContactForm />
           </div>
         </div>
       </section>

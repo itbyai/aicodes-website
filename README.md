@@ -264,6 +264,50 @@ cp .env.local.example .env.local
 # 编辑 .env.local 填入你的配置（可选，默认配置即可运行）
 ```
 
+#### Knack 集成配置
+
+如果要将联系表单数据发送到 Knack，需要配置以下环境变量：
+
+```bash
+# Knack Configuration
+KNACK_APPLICATION_ID="your_knack_application_id"
+KNACK_API_KEY="your_knack_api_key"
+KNACK_OBJECT_KEY="your_object_key"
+```
+
+**获取 Knack 配置信息：**
+
+1. **Application ID**: 登录 Knack → Settings → API & Code → Application ID
+2. **API Key**: 在同一页面找到 REST API Key
+3. **Object Key**: 进入你的数据库对象 → Settings → API & Code → Object Key
+
+**字段映射配置：**
+
+在 `src/app/api/contact/route.ts` 中，需要将表单字段映射到 Knack 的字段 key：
+
+```typescript
+const knackData = {
+  field_1: name,        // 替换为你的姓名字段 key
+  field_2: email,       // 替换为你的邮箱字段 key
+  field_3: subject,     // 替换为你的主题字段 key
+  field_4: message,     // 替换为你的消息字段 key
+}
+```
+
+**如何获取字段 key：**
+1. 在 Knack 中进入你的对象
+2. 点击 Settings → API & Code
+3. 查看字段列表，每个字段都有对应的 key（如 field_1, field_2 等）
+
+**测试连接：**
+配置完成后，可以运行测试脚本来验证连接：
+
+```bash
+npm run test-knack
+```
+
+这个脚本会发送一条测试数据到你的Knack应用，帮助你验证配置是否正确。
+
 4. **运行开发服务器**
 ```bash
 npm run dev
