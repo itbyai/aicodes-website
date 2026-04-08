@@ -5,7 +5,7 @@ import { Download, FileCode, Book, Wrench, Package, Star, ExternalLink, Github, 
 import { useTranslation } from '@/lib/use-translation'
 
 export default function ResourcesPage() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
 
   const uploadInstructions = [
     {
@@ -30,37 +30,17 @@ export default function ResourcesPage() {
     },
   ]
 
-  const resourceCategories = [
+  const resourceCategories = locale === 'zh' ? [
     {
       icon: Book,
       title: '学习资料',
       description: '精选电子书、教程和学习路线图',
       color: 'from-blue-500 to-cyan-500',
       items: [
-        {
-          name: 'TypeScript 完全指南',
-          type: 'PDF',
-          size: '5.2 MB',
-          description: '从基础到高级的 TypeScript 学习手册',
-        },
-        {
-          name: 'React 最佳实践 2024',
-          type: 'PDF',
-          size: '3.8 MB',
-          description: 'React Hooks、性能优化和设计模式',
-        },
-        {
-          name: '软件测试自动化完整指南',
-          type: 'PDF',
-          size: '7.5 MB',
-          description: '单元测试、集成测试、E2E 测试全覆盖',
-        },
-        {
-          name: '数据工程学习路线图',
-          type: 'Notion',
-          size: '在线',
-          description: '从入门到精通的完整学习计划',
-        },
+        { name: 'TypeScript 完全指南', type: 'PDF', size: '5.2 MB', description: '从基础到高级的 TypeScript 学习手册' },
+        { name: 'React 最佳实践 2024', type: 'PDF', size: '3.8 MB', description: 'React Hooks、性能优化和设计模式' },
+        { name: '软件测试自动化完整指南', type: 'PDF', size: '7.5 MB', description: '单元测试、集成测试、E2E 测试全覆盖' },
+        { name: '数据工程学习路线图', type: 'Notion', size: '在线', description: '从入门到精通的完整学习计划' },
       ],
     },
     {
@@ -69,30 +49,10 @@ export default function ResourcesPage() {
       description: '提高开发效率的工具和插件推荐',
       color: 'from-green-500 to-emerald-500',
       items: [
-        {
-          name: 'VS Code 配置文件',
-          type: 'JSON',
-          size: '12 KB',
-          description: '优化的 VS Code 设置和扩展列表',
-        },
-        {
-          name: 'Git 工作流模板',
-          type: 'Markdown',
-          size: '8 KB',
-          description: 'Git Flow、GitHub Flow 等最佳实践',
-        },
-        {
-          name: 'Docker Compose 模板集',
-          type: 'YAML',
-          size: '45 KB',
-          description: '常用开发环境 Docker 配置',
-        },
-        {
-          name: 'ESLint + Prettier 配置',
-          type: 'Config',
-          size: '15 KB',
-          description: '统一的代码规范配置文件',
-        },
+        { name: 'VS Code 配置文件', type: 'JSON', size: '12 KB', description: '优化的 VS Code 设置和扩展列表' },
+        { name: 'Git 工作流模板', type: 'Markdown', size: '8 KB', description: 'Git Flow、GitHub Flow 等最佳实践' },
+        { name: 'Docker Compose 模板集', type: 'YAML', size: '45 KB', description: '常用开发环境 Docker 配置' },
+        { name: 'ESLint + Prettier 配置', type: 'Config', size: '15 KB', description: '统一的代码规范配置文件' },
       ],
     },
     {
@@ -137,35 +97,88 @@ export default function ResourcesPage() {
       description: '实用的工具函数库和 NPM 包',
       color: 'from-orange-500 to-red-500',
       items: [
+        { name: 'TypeScript 工具函数库', type: 'NPM', size: '125 KB', description: '类型安全的常用工具函数集合' },
+        { name: 'React Hooks 集合', type: 'NPM', size: '85 KB', description: '常用自定义 Hooks (useDebounce, useLocalStorage 等)' },
+        { name: 'Python 数据处理工具', type: 'PyPI', size: '320 KB', description: 'ETL 和数据清洗常用函数' },
+        { name: 'SQL 查询优化脚本', type: 'SQL', size: '28 KB', description: '性能优化和常用查询模板' },
+      ],
+    },
+  ] : [
+    {
+      icon: Book,
+      title: 'Learning Materials',
+      description: 'Curated ebooks, tutorials, and learning roadmaps',
+      color: 'from-blue-500 to-cyan-500',
+      items: [
+        { name: 'TypeScript Complete Guide', type: 'PDF', size: '5.2 MB', description: 'A practical TypeScript guide from beginner to advanced' },
+        { name: 'React Best Practices 2024', type: 'PDF', size: '3.8 MB', description: 'React Hooks, performance optimization, and design patterns' },
+        { name: 'Software Testing Automation Handbook', type: 'PDF', size: '7.5 MB', description: 'Full coverage of unit, integration, and E2E testing' },
+        { name: 'Data Engineering Learning Roadmap', type: 'Notion', size: 'Online', description: 'A full roadmap from fundamentals to advanced skills' },
+      ],
+    },
+    {
+      icon: Wrench,
+      title: 'Developer Tools',
+      description: 'Tools and plugins to improve engineering efficiency',
+      color: 'from-green-500 to-emerald-500',
+      items: [
+        { name: 'VS Code Config Pack', type: 'JSON', size: '12 KB', description: 'Optimized VS Code settings and extension list' },
+        { name: 'Git Workflow Templates', type: 'Markdown', size: '8 KB', description: 'Best practices for Git Flow and GitHub Flow' },
+        { name: 'Docker Compose Templates', type: 'YAML', size: '45 KB', description: 'Reusable compose templates for common dev environments' },
+        { name: 'ESLint + Prettier Configs', type: 'Config', size: '15 KB', description: 'Unified code-style and formatting configuration' },
+      ],
+    },
+    {
+      icon: FileCode,
+      title: 'Code Templates',
+      description: 'Ready-to-use project templates and snippets',
+      color: 'from-purple-500 to-pink-500',
+      items: [
         {
-          name: 'TypeScript 工具函数库',
-          type: 'NPM',
-          size: '125 KB',
-          description: '类型安全的常用工具函数集合',
+          name: 'Next.js Full-Stack Template',
+          type: 'GitHub',
+          size: 'Online',
+          description: 'Next.js + TypeScript + Tailwind + Prisma',
+          link: 'https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss',
         },
         {
-          name: 'React Hooks 集合',
-          type: 'NPM',
-          size: '85 KB',
-          description: '常用自定义 Hooks (useDebounce, useLocalStorage 等)',
+          name: 'React Component Library Template',
+          type: 'GitHub',
+          size: 'Online',
+          description: 'Storybook-based component development setup',
+          link: 'https://github.com/storybookjs/react-vite-template',
         },
         {
-          name: 'Python 数据处理工具',
-          type: 'PyPI',
-          size: '320 KB',
-          description: 'ETL 和数据清洗常用函数',
+          name: 'Python FastAPI Template',
+          type: 'GitHub',
+          size: 'Online',
+          description: 'FastAPI + PostgreSQL + Docker',
+          link: 'https://github.com/tiangolo/full-stack-fastapi-postgresql',
         },
         {
-          name: 'SQL 查询优化脚本',
-          type: 'SQL',
-          size: '28 KB',
-          description: '性能优化和常用查询模板',
+          name: 'Pytest Framework Template',
+          type: 'GitHub',
+          size: 'Online',
+          description: 'Complete test project structure and examples',
+          link: 'https://github.com/pytest-dev/pytest',
         },
+      ],
+    },
+    {
+      icon: Package,
+      title: 'Toolkits',
+      description: 'Useful utility libraries and package collections',
+      color: 'from-orange-500 to-red-500',
+      items: [
+        { name: 'TypeScript Utility Library', type: 'NPM', size: '125 KB', description: 'Type-safe helper functions for daily development' },
+        { name: 'React Hooks Collection', type: 'NPM', size: '85 KB', description: 'Reusable hooks such as useDebounce and useLocalStorage' },
+        { name: 'Python Data Toolkit', type: 'PyPI', size: '320 KB', description: 'Common helpers for ETL and data cleaning' },
+        { name: 'SQL Optimization Scripts', type: 'SQL', size: '28 KB', description: 'Query tuning scripts and common query templates' },
       ],
     },
   ]
 
-  const featuredResources = [
+  const featuredResources = locale === 'zh' ? [
     {
       title: '完整技术栈学习路径',
       description: '从前端到后端、从测试到数据工程的完整学习路线图，包含推荐资源和实战项目',
@@ -183,6 +196,28 @@ export default function ResourcesPage() {
     {
       title: '面试题库',
       description: '涵盖算法、系统设计、前端、后端的面试题目和详细解答',
+      icon: Book,
+      color: 'from-indigo-500 to-purple-500',
+      link: '#',
+    },
+  ] : [
+    {
+      title: 'Full-Stack Learning Path',
+      description: 'A complete learning roadmap from frontend and backend to testing and data engineering',
+      icon: Star,
+      color: 'from-yellow-500 to-orange-500',
+      link: '#',
+    },
+    {
+      title: 'Open Source Picks',
+      description: 'High-quality GitHub projects to learn production-grade implementation and best practices',
+      icon: Github,
+      color: 'from-gray-700 to-gray-900',
+      link: '#',
+    },
+    {
+      title: 'Interview Question Bank',
+      description: 'Curated interview questions across algorithms, system design, frontend, and backend',
       icon: Book,
       color: 'from-indigo-500 to-purple-500',
       link: '#',

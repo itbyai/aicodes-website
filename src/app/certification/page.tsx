@@ -5,7 +5,7 @@ import { Award, BadgeCheck, ClipboardCheck, FileCheck2, GraduationCap, ShieldChe
 import { useTranslation } from '@/lib/use-translation'
 
 export default function CertificationPage() {
-  const { t } = useTranslation()
+  const { t, locale } = useTranslation()
 
   const tracks = [
     {
@@ -40,6 +40,56 @@ export default function CertificationPage() {
     { q: t('certification.faq.q2'), a: t('certification.faq.a2') },
     { q: t('certification.faq.q3'), a: t('certification.faq.a3') },
   ]
+
+  const providerSection = locale === 'zh'
+    ? {
+        title: '厂商认证类别',
+        subtitle: '按目标平台选择认证路径，更容易和岗位需求对齐。',
+        providers: [
+          {
+            name: 'Microsoft 认证',
+            audience: '适合 .NET、Azure、企业级应用方向',
+            level: '推荐路径：AZ-900 -> AZ-204 -> AZ-305',
+            certs: ['AZ-900 Azure Fundamentals', 'AZ-204 Developer', 'AZ-305 Solutions Architect'],
+          },
+          {
+            name: 'AWS 认证',
+            audience: '适合云原生、后端、DevOps 与数据平台方向',
+            level: '推荐路径：Cloud Practitioner -> Associate -> Specialty',
+            certs: ['Cloud Practitioner', 'Solutions Architect Associate', 'Developer Associate'],
+          },
+          {
+            name: 'Google Cloud 认证',
+            audience: '适合数据工程、ML 平台、云架构方向',
+            level: '推荐路径：Cloud Digital Leader -> ACE -> Professional',
+            certs: ['Cloud Digital Leader', 'Associate Cloud Engineer', 'Professional Data Engineer'],
+          },
+        ],
+      }
+    : {
+        title: 'Certification Categories',
+        subtitle: 'Choose by target platform so your preparation matches real job requirements.',
+        providers: [
+          {
+            name: 'Microsoft Certifications',
+            audience: 'Best for .NET, Azure, and enterprise application tracks',
+            level: 'Suggested path: AZ-900 -> AZ-204 -> AZ-305',
+            certs: ['AZ-900 Azure Fundamentals', 'AZ-204 Developer', 'AZ-305 Solutions Architect'],
+          },
+          {
+            name: 'AWS Certifications',
+            audience: 'Best for cloud-native backend, DevOps, and data platform tracks',
+            level: 'Suggested path: Cloud Practitioner -> Associate -> Specialty',
+            certs: ['Cloud Practitioner', 'Solutions Architect Associate', 'Developer Associate'],
+          },
+          {
+            name: 'Google Cloud Certifications',
+            audience: 'Best for data engineering, ML platform, and cloud architecture tracks',
+            level: 'Suggested path: Cloud Digital Leader -> ACE -> Professional',
+            certs: ['Cloud Digital Leader', 'Associate Cloud Engineer', 'Professional Data Engineer'],
+          },
+        ],
+      }
 
   return (
     <div className="flex flex-col">
@@ -94,6 +144,31 @@ export default function CertificationPage() {
                 </div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t">
+        <div className="container max-w-6xl py-14 md:py-16">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-center mb-3">
+            {providerSection.title}
+          </h2>
+          <p className="text-center text-muted-foreground mb-8">{providerSection.subtitle}</p>
+          <div className="grid gap-6 md:grid-cols-3">
+            {providerSection.providers.map((provider) => (
+              <div key={provider.name} className="rounded-lg border bg-card p-6">
+                <h3 className="text-lg font-semibold">{provider.name}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{provider.audience}</p>
+                <p className="mt-3 text-sm font-medium text-primary">{provider.level}</p>
+                <div className="mt-4 space-y-2">
+                  {provider.certs.map((cert) => (
+                    <p key={cert} className="text-sm text-muted-foreground">
+                      • {cert}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

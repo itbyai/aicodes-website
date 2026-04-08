@@ -66,6 +66,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/ai" className="text-muted-foreground hover:text-primary">
+                  {t('nav.ai')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/resources" className="text-muted-foreground hover:text-primary">
                   {t('nav.resources')}
                 </Link>

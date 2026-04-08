@@ -22,6 +22,7 @@ export function Header() {
     { href: '/jobs', title: t('nav.jobs', locale) },
     { href: '/interview', title: t('nav.interview', locale) },
     { href: '/certification', title: t('nav.certification', locale) },
+    { href: '/ai', title: t('nav.ai', locale) },
     { href: '/resources', title: t('nav.resources', locale) },
     { href: '/about', title: t('nav.about', locale) },
     { href: '/contact', title: t('nav.contact', locale) },

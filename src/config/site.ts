@@ -73,6 +73,10 @@ export const siteConfig = {
       href: '/certification',
     },
     {
+      title: 'AI 学习',
+      href: '/ai',
+    },
+    {
       title: '资源下载',
       href: '/resources',
     },
