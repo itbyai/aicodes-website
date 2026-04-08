@@ -21,6 +21,7 @@ export function Header() {
     { href: '/career-advice', title: t('nav.careerAdvice', locale) },
     { href: '/jobs', title: t('nav.jobs', locale) },
     { href: '/interview', title: t('nav.interview', locale) },
+    { href: '/certification', title: t('nav.certification', locale) },
     { href: '/resources', title: t('nav.resources', locale) },
     { href: '/about', title: t('nav.about', locale) },
     { href: '/contact', title: t('nav.contact', locale) },

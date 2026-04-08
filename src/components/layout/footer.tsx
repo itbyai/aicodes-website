@@ -61,6 +61,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/certification" className="text-muted-foreground hover:text-primary">
+                  {t('nav.certification')}
+                </Link>
+              </li>
+              <li>
                 <Link href="/resources" className="text-muted-foreground hover:text-primary">
                   {t('nav.resources')}
                 </Link>

@@ -69,6 +69,10 @@ export const siteConfig = {
       href: '/jobs',
     },
     {
+      title: '考试认证',
+      href: '/certification',
+    },
+    {
       title: '资源下载',
       href: '/resources',
     },
